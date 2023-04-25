@@ -1,0 +1,66 @@
+<mat-sidenav-container fullscreen>
+
+  <mat-sidenav #sidenav>
+    <mat-toolbar color="primary">
+      <span>Menu</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <a routerLink="/administrador/reportes/listado" mat-list-item (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon> receipt_long </mat-icon>
+        <span>Reportes</span>
+      </a>
+      <a routerLink="/administrador/usuarios" mat-list-item (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon> perm_contact_calendar </mat-icon>
+        <span>Usuarios</span>
+      </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="spacer"></span>
+
+    <!-- Drop down -->
+    <div>
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Avatar -->
+        <li class="btn-group">
+          <a class="nav-link dropdown-toggle  hidden-arrow d-flex align-items-center" href="#"
+            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span>UserName</span>
+
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="#">
+                <span>Perfil</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/autenticacion/login">
+                <span>Salir</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- Drop down -->
+
+
+  </mat-toolbar>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-sidenav-container>

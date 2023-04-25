@@ -1,0 +1,70 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+
+    <div class="d-flex">
+      <div style="margin-right: 10px ">
+        <h1>Pedidos</h1>
+      </div>
+    </div>
+
+    <div class="accordion" *ngFor="let registro of tablas">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            <span> <strong>Nombre: </strong> Pedido 1 </span>
+            <span class="spacer"></span>
+            <span> <strong>Fecha: </strong> 2023-15-2 </span>
+            <span class="spacer"></span>
+            <span> <strong>Fecha de entrega: </strong> 2023-12-2 </span>
+            <span class="spacer"></span>
+
+            <button mat-raised-button color="primary" style="margin-right: 15px;">Entregar</button>
+            <button mat-raised-button color="primary">Editar</button>
+
+            <span class="spacer"></span>
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div>
+              <table class="table tabla">
+                <thead class="table-dark">
+                  <tr>
+                    <th>NOMBRE DE USUARIO</th>
+                    <th>FECHA DE SUSCRIPCION</th>
+                    <th>INGRESO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let registro of tablas">
+                    <td>data</td>
+                    <td>data</td>
+                    <td>data</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<ol>
+  <li>
+    <mat-form-field appearance="fill">
+      <mat-label>What's your name?</mat-label>
+      <input matInput [(ngModel)]="name">
+    </mat-form-field>
+  </li>
+  <li>
+    <button mat-raised-button (click)="openDialog()">Pick one</button>
+  </li>
+  <li *ngIf="animal">
+    You chose: <i>{{animal}}</i>
+  </li>
+</ol>

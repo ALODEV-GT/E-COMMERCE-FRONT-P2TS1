@@ -1,0 +1,77 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+
+    <div class="col-8">
+      <div class="d-flex">
+        <div style="margin-right: 10px ">
+          <h1>Carrito</h1>
+        </div>
+        <span class="spacer"></span>
+        <div class=" d-flex align-items-center">
+          <a class="btn btn-outline-danger">Eliminar carrito</a>
+        </div>
+      </div>
+
+      <div>
+        <table class="table tabla">
+          <thead class="table-dark">
+            <tr>
+              <th>NOMBRE DE USUARIO</th>
+              <th>FECHA DE SUSCRIPCION</th>
+              <th>INGRESO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let registro of tablas">
+              <td>data</td>
+              <td>data</td>
+              <td>data</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <button mat-raised-button color="primary">Comprar</button>
+      </div>
+
+    </div>
+
+
+    <div class="col-4">
+      <div class="dropdown">
+        <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Mis tarjetas
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Tarjeta 1</a></li>
+          <li><a class="dropdown-item" href="#">Tarjeta 2</a></li>
+          <li><a class="dropdown-item" href="#">Tarjeta 3</a></li>
+        </ul>
+      </div>
+      <br>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Numero de tarjeta: </label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">CVV: </label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Fecha de expiracion: </label>
+        <input type="date" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Aleas: </label>
+        <input type="text" class="form-control" placeholder="mi tarjeta azul">
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Guardar tarjeta
+        </label>
+      </div>
+    </div>
+
+  </div>
+</div>

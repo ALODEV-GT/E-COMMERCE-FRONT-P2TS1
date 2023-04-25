@@ -1,0 +1,72 @@
+<mat-sidenav-container fullscreen>
+
+  <mat-sidenav #sidenav>
+    <mat-toolbar color="primary">
+      <span>Menu</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <a routerLink="/paqueteria/pedidos" mat-list-item (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon> receipt_long </mat-icon>
+        <span>Pedidos pendientes</span>
+      </a>
+      <a routerLink="/paqueteria/autorizacion" mat-list-item (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon> fact_check </mat-icon>
+        <span>Productos a autorizar</span>
+      </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="spacer"></span>
+
+    <div style="margin-right: 22px;">
+      <button mat-icon-button matBadge="10" matBadgePosition="after" matBadgeColor="accent">
+        <mat-icon>notifications</mat-icon>
+      </button>
+    </div>
+
+    <!-- Drop down -->
+    <div>
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Avatar -->
+        <li class="btn-group">
+          <a class="nav-link dropdown-toggle  hidden-arrow d-flex align-items-center" href="#"
+            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span>UserName</span>
+
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="#">
+                <span>Perfil</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/autenticacion/login" class="dropdown-item" href="#">
+                <span>Salir</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- Drop down -->
+
+
+  </mat-toolbar>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-sidenav-container>

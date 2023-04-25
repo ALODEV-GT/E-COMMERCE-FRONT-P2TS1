@@ -1,0 +1,25 @@
+<div class="container">
+  <div *ngFor="let productos of productos" class="item">
+    <mat-card >
+
+      <mat-card-header>
+        <mat-card-title>Jueguete para perro</mat-card-title>
+        <mat-card-subtitle>Mascotas</mat-card-subtitle>
+      </mat-card-header>
+
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+      <mat-card-content>
+        <p>
+          Descripcion
+        </p>
+
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="warn">Agregar al carrito</button>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+</div>

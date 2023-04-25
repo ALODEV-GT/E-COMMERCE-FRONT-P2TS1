@@ -1,0 +1,47 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+
+    <div class="d-flex">
+      <div style="margin-right: 10px ">
+        <h1>Autorizacion</h1>
+      </div>
+    </div>
+
+    <div>
+      <table class="table tabla">
+        <thead class="table-dark">
+          <tr>
+            <th>NOMBRE DE USUARIO</th>
+            <th>FECHA DE SUSCRIPCION</th>
+            <th>INGRESO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let registro of tablas">
+            <td>data</td>
+            <td>data</td>
+            <td>
+              <button mat-raised-button color="primary"> Ver </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<ol>
+  <li>
+    <mat-form-field appearance="fill">
+      <mat-label>What's your name?</mat-label>
+      <input matInput [(ngModel)]="name">
+    </mat-form-field>
+  </li>
+  <li>
+    <button mat-raised-button (click)="openDialog()">Pick one</button>
+  </li>
+  <li *ngIf="animal">
+    You chose: <i>{{animal}}</i>
+  </li>
+</ol>
