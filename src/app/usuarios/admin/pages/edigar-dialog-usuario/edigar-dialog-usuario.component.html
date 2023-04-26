@@ -1,48 +1,37 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field appearance="fill">
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput [(ngModel)]="data.animal">
+<form (ngSubmit)='editarUsuario()' autocomplete="off" [formGroup]="miFormulario">
+  <h2>
+    <strong>Editar</strong>
+  </h2>
+  <mat-form-field appearance="fill" class="margen">
+    <mat-label>Tipo de cuenta</mat-label>
+    <mat-select formControlName="tipoCuenta">
+      <mat-option *ngFor="let rol of roles" [value]="rol">
+        {{rol | titlecase}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div>
-<mat-card>
-  <mat-card-header>
-    <h2>
-      <strong>Editar</strong>
-    </h2>
-  </mat-card-header>
-  <mat-card-content>
-    <div class="dropdown">
-      <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Rol
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Rol 1</a></li>
-        <li><a class="dropdown-item" href="#">Rol 2</a></li>
-        <li><a class="dropdown-item" href="#">Rol 3</a></li>
-      </ul>
-    </div>
-    <br>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Nombre: </label>
-      <input type="text" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Usuario: </label>
-      <input type="text" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Contraseña: </label>
-      <input type="text" class="form-control">
-    </div>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="warn">Cancelar</button>
-    <button mat-raised-button color="primary">Guardar</button>
-  </mat-card-actions>
-</mat-card>
+  <br>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Nombre: </label>
+    <input formControlName="nombre" type="text" class="form-control">
+    <span *ngIf="campoEsValido('nombre')" class="form-text text-danger">
+      Debe de ser mayor a 5 caracteres
+    </span>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Usuario: </label>
+    <input formControlName="usuario" type="text" class="form-control">
+    <span *ngIf="campoEsValido('usuario')" class="form-text text-danger">
+      {{getErrorNombre()}}
+    </span>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Contraseña: </label>
+    <input formControlName="contrasena" type="text" class="form-control">
+    <span *ngIf="campoEsValido('contrasena')" class="form-text text-danger">
+      Debe de ser mayor a 5 caracteres
+    </span>
+  </div>
+  <button type="button" mat-raised-button (click)="onNoClick()" color="warn">Cancelar</button>
+  <button type="submit" mat-raised-button color="primary">Guardar</button>
+</form>
