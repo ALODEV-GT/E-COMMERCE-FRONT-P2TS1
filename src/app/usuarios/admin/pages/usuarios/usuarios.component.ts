@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EdigarDialogUsuarioComponent } from '../edigar-dialog-usuario/edigar-dialog-usuario.component';
 import { Usuario } from '../../../../../models/Usuario';
 import { UsuariosService } from '../../services/usuarios.service';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NombreUsuarioValidatorService } from '../../services/nombre-usuario-validator.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -13,9 +13,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent {
-
-  //dialog
-  animal!: string
 
   usuarios: Usuario[] = [];
   roles: string[] = ["administrador", "paqueteria"]
@@ -92,7 +89,7 @@ export class UsuariosComponent {
     if (errors?.required) {
       return "Este campo es obligatorio";
     } else if (errors?.minlength) {
-      return "Debe tener almenos 5 caracteres"
+      return "Debe tener almenos 4 caracteres"
     } else if (errors?.usuarioUsado) {
       return "Este nombre de usuario ya esta en uso"
     }

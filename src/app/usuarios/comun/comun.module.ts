@@ -7,6 +7,7 @@ import { ProductosComponent } from './pages/productos/productos.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ProductoCardComponent } from './pages/producto-card/producto-card.component';
+import { MisProductosComponent } from './pages/mis-productos/mis-productos.component';
 
 
 
@@ -16,7 +17,8 @@ import { ProductoCardComponent } from './pages/producto-card/producto-card.compo
     ProductosComponent,
     CarritoComponent,
     PedidosComponent,
-    ProductoCardComponent
+    ProductoCardComponent,
+    MisProductosComponent
   ],
   imports: [
     CommonModule,
