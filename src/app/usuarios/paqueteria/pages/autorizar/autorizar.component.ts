@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FechaDialogComponent } from '../fecha-dialog/fecha-dialog.component';
+import { AutorizacionService } from '../../services/autorizacion.service';
+import { Producto } from 'src/models/Producto';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-autorizar',
@@ -12,21 +15,31 @@ export class AutorizarComponent implements OnInit {
   animal!: string;
   name!: string;
 
-  tablas: any = [1, 2, 3, 4, 5]
+  productos: Producto[] = []
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private autorizacionService: AutorizacionService
+  ) {
+    this.listarSolicitudes();
+  }
+
+  listarSolicitudes() {
+    this.autorizacionService.getProductosAutorizar().subscribe((resp: Producto[]) => {
+      this.productos = resp;
+    })
+  }
 
   ngOnInit(): void {
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(FechaDialogComponent, {
-      data: { name: this.name, animal: this.animal },
+  openDialog(producto: Producto): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: producto,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      this.listarSolicitudes()
     });
   }
 

@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Usuario } from 'src/models/Usuario';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { NombreUsuarioValidatorService } from '../../services/nombre-usuario-validator.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -75,7 +74,7 @@ export class EdigarDialogUsuarioComponent implements OnInit {
     const usuario: string = this.miFormulario.get('usuario')?.value;
     const contrasena: string = this.miFormulario.get('contrasena')?.value;
     const tipo: string = this.miFormulario.get('tipoCuenta')?.value;
-    const updUsuario: Usuario = new Usuario(nombre, usuario, contrasena, tipo);
+    const updUsuario: Usuario = new Usuario(nombre, usuario, contrasena, tipo, []);
 
     if (this.data.usuario == usuario) {
       this.actualizarUsuario(updUsuario, this.data.usuario);

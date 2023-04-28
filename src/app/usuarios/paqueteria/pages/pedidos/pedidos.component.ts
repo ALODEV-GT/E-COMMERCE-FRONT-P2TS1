@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
+import { FechaDialogComponent } from '../fecha-dialog/fecha-dialog.component';
 
 export interface DialogData {
   animal: string;
@@ -23,7 +23,7 @@ export class PedidosComponent {
   constructor(public dialog: MatDialog) { }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(FechaDialogComponent, {
       data: { name: this.name, animal: this.animal },
     });
 

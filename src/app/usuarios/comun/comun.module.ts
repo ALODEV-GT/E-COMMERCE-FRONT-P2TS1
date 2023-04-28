@@ -8,8 +8,10 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ProductoCardComponent } from './pages/producto-card/producto-card.component';
 import { MisProductosComponent } from './pages/mis-productos/mis-productos.component';
-
-
+import { DialogAgregarComponent } from './pages/dialog-agregar/dialog-agregar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RechazadosComponent } from './pages/rechazados/rechazados.component';
+import { VentasComponent } from './pages/ventas/ventas.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,17 @@ import { MisProductosComponent } from './pages/mis-productos/mis-productos.compo
     CarritoComponent,
     PedidosComponent,
     ProductoCardComponent,
-    MisProductosComponent
+    MisProductosComponent,
+    DialogAgregarComponent,
+    RechazadosComponent,
+    VentasComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    ComunRoutingModule
+    ComunRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ComunModule { }

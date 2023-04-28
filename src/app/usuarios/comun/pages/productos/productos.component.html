@@ -1,23 +1,33 @@
 <div class="container">
-  <div *ngFor="let productos of productos" class="item">
-    <mat-card >
+  <div *ngFor="let producto of productos" class="item">
+    <mat-card>
 
       <mat-card-header>
-        <mat-card-title>Jueguete para perro</mat-card-title>
-        <mat-card-subtitle>Mascotas</mat-card-subtitle>
+        <mat-card-title>{{producto.nombre}}</mat-card-title>
+        <mat-card-subtitle>{{producto.categoria?.toString()| titlecase}}</mat-card-subtitle>
       </mat-card-header>
 
       <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
 
       <mat-card-content>
-        <p>
-          Descripcion
-        </p>
+        <div>
+          {{producto.descripcion}}
+        </div>
+        <div>
+          <strong> Disponibles: </strong> {{producto.stock}}
+        </div>
+        <div>
+          <strong> Precio: </strong> {{producto.precio}}
+        </div>
 
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-raised-button color="warn">Agregar al carrito</button>
+        <div class="mb-3">
+          <input type="number" class="form-control" placeholder="Unidades a comprar" [(ngModel)]="producto.unidadesCompra">
+        </div>
+        <button (click)="agregarAlCarrito(producto)" type="button" mat-raised-button color="accent">Agregar al
+          carrito</button>
       </mat-card-actions>
 
     </mat-card>

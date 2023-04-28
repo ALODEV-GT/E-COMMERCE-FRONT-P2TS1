@@ -66,18 +66,17 @@ export class UsuariosComponent {
     const usuario: string = this.miFormulario.get('usuario')?.value;
     const contrasena: string = this.miFormulario.get('contrasena')?.value;
     const tipo: string = this.miFormulario.get('tipoCuenta')?.value;
-    const nuevoUsuario: Usuario = new Usuario(nombre, usuario, contrasena, tipo);
+    const nuevoUsuario: Usuario = new Usuario(nombre, usuario, contrasena, tipo, []);
 
     this.usuariosService.agregarNuevoUsuario(nuevoUsuario).subscribe((resp: boolean) => {
       if (resp) {
         this.openSnackBar("Usuario creado satisfactoriamente", "X")
         this.listarUsuarios()
+        this.miFormulario.reset();
       } else {
         this.openSnackBar("Ocurrio un error al crear el usuario", "X")
       }
     });
-
-    this.miFormulario.reset();
   }
 
   campoEsValido(control: string) {

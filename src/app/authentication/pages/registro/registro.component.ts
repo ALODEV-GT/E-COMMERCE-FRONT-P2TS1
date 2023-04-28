@@ -42,7 +42,7 @@ export class RegistroComponent {
     const usuario: string = this.miFormulario.get('usuario')?.value;
     const contrasena: string = this.miFormulario.get('contrasena')?.value;
     const tipo: string = "comun"
-    const nuevoUsuario: Usuario = new Usuario(nombre, usuario, contrasena, tipo);
+    const nuevoUsuario: Usuario = new Usuario(nombre, usuario, contrasena, tipo, []);
 
     this.usuariosService.agregarNuevoUsuario(nuevoUsuario).subscribe((resp: boolean) => {
       if (resp) {

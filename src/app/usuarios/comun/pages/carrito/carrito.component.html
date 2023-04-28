@@ -8,7 +8,7 @@
         </div>
         <span class="spacer"></span>
         <div class=" d-flex align-items-center">
-          <a class="btn btn-outline-danger">Eliminar carrito</a>
+          <a class="btn btn-outline-danger" type="button" (click)="eliminarCarrito()">Eliminar carrito</a>
         </div>
       </div>
 
@@ -16,62 +16,70 @@
         <table class="table tabla">
           <thead class="table-dark">
             <tr>
-              <th>NOMBRE DE USUARIO</th>
-              <th>FECHA DE SUSCRIPCION</th>
-              <th>INGRESO</th>
+              <th>Nombre</th>
+              <th>Unidades</th>
+              <th>Precio</th>
+              <th>Total</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let registro of tablas">
-              <td>data</td>
-              <td>data</td>
-              <td>data</td>
+            <tr *ngFor="let producto of productos">
+              <td>{{producto.nombre}}</td>
+              <td>{{producto.unidadesCompra}}</td>
+              <td>{{producto.precio}}</td>
+              <td>{{producto.precio*(producto.unidadesCompra || 0)}}</td>
+              <td>
+                <button (click)="eliminarProducto(producto)" type="button" class="btn btn-outline-danger">
+                  <mat-icon>delete</mat-icon></button>
+              </td>
             </tr>
           </tbody>
         </table>
-      </div>
-      <div>
-        <button mat-raised-button color="primary">Comprar</button>
-      </div>
-
-    </div>
-
-
-    <div class="col-4">
-      <div class="dropdown">
-        <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Mis tarjetas
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Tarjeta 1</a></li>
-          <li><a class="dropdown-item" href="#">Tarjeta 2</a></li>
-          <li><a class="dropdown-item" href="#">Tarjeta 3</a></li>
-        </ul>
-      </div>
-      <br>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Numero de tarjeta: </label>
-        <input type="text" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">CVV: </label>
-        <input type="text" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Fecha de expiracion: </label>
-        <input type="date" class="form-control">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Aleas: </label>
-        <input type="text" class="form-control" placeholder="mi tarjeta azul">
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-          Guardar tarjeta
-        </label>
+        <div>
+          <strong>TOTAL: </strong> {{total()}}
+        </div>
       </div>
     </div>
 
+    <form class="col-4" (ngSubmit)='comprar()' autocomplete="off" [formGroup]="miFormulario">
+      <div class="col-4">
+        <mat-form-field *ngIf="tarjetas.length>0" appearance="fill" class="margen">
+          <mat-label>Tarjeta</mat-label>
+          <mat-select formControlName="tarjeta">
+            <mat-option *ngFor="let tarjeta of tarjetas; let i = index " [value]="tarjeta">
+              {{tarjeta.aleas + " " + formatearNumeroTarjeta(tarjeta)}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <div class="mb-3">
+          <label class="form-label">Numero de tarjeta: </label>
+          <input formControlName="notarjeta" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">CVV: </label>
+          <input formControlName="cvv" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Fecha de expiracion: </label>
+          <input formControlName="fecha" type="date" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Aleas: </label>
+          <input formControlName="aleas" type="text" class="form-control" placeholder="mi tarjeta azul">
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" formControlName="guardar" id="flexCheckDefault">
+          <label class="form-check-label">
+            Guardar tarjeta
+          </label>
+        </div>
+        <br>
+        <div>
+          <button type="submit" mat-raised-button color="primary">Comprar</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

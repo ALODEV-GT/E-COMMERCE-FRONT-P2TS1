@@ -1,0 +1,59 @@
+<form class="container" (ngSubmit)='agregarProducto()' autocomplete="off" [formGroup]="miFormulario">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Agregar nuevo producto</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <br>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            alt="Photo of a Shiba Inu">
+        </div>
+        <div class="col-7">
+          <mat-card-content>
+            <div class="mb-3">
+              <label class="form-label">Nombre: </label>
+              <input formControlName="nombre" type="text" class="form-control">
+              <span *ngIf="campoEsValido('nombre')" class="form-text text-danger">
+                Debe de ser mayor a 5 caracteres
+              </span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Descripcion: </label>
+              <input formControlName="descripcion" type="text" class="form-control">
+              <span *ngIf="campoEsValido('descripcion')" class="form-text text-danger">
+                Debe de ser mayor a 5 caracteres
+              </span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Precio: </label>
+              <input formControlName="precio" type="number" class="form-control">
+              <span *ngIf="campoEsValido('precio')" class="form-text text-danger">
+                Debe de ser mayor a 0 caracteres
+              </span>
+            </div>
+            <div>
+              <label class="form-label">Categoria: </label>
+              <select formControlName="categoria" class="form-select">
+                <option *ngFor="let categoria of categorias" [value]="categoria">{{categoria | titlecase}}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Unidades: </label>
+              <input formControlName="stock" type="number" class="form-control">
+              <span *ngIf="campoEsValido('stock')" class="form-text text-danger">
+                Debe de ser mayor a 0 caracteres
+              </span>
+            </div>
+          </mat-card-content>
+        </div>
+      </div>
+    </div>
+    <mat-card-actions>
+      <button (click)="onNoClick()" type="button" mat-raised-button color="warn">Cancelar</button>
+      <button type="submit" mat-raised-button color="primary">Guardar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

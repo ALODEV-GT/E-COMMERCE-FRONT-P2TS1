@@ -17,6 +17,13 @@ export class AuthenticationService {
 
   }
 
+  getUsuarioAutenticado(): Usuario | undefined {
+    if (!this._usuario) {
+      this._usuario = JSON.parse(localStorage.getItem('autenticado')!) || undefined;
+    }
+    return this._usuario;
+  }
+
   autenticar(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(`${this.baseUrl}`, usuario).pipe(
       tap(resp => {

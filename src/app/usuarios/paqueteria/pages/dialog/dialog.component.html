@@ -1,33 +1,53 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field appearance="fill">
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div>
 <mat-card>
   <mat-card-header>
-    <h2>
-      <strong>Editar</strong>
-    </h2>
+    <mat-card-title>{{data.nombre}}</mat-card-title>
+    <mat-card-subtitle>@{{data.usuario}}</mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Fecha del pedido: </label>
-      <input type="date" class="form-control">
+  <br>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-5">
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      </div>
+      <div class="col-7">
+        <mat-card-content>
+          <div class="mb-3">
+            <label class="form-label"><strong>Descripcion:</strong> </label>
+            <div>
+              {{data.descripcion}}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Precio:</strong></label>
+            <div>
+              {{data.precio}}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Categoria:</strong></label>
+            <div>
+              {{data.categoria?.toString() | titlecase}}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Unidades:</strong> </label>
+            <div>
+              {{data.stock}}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Estado:</strong> </label>
+            <div>
+              {{data.solicitud.estado.toString() | titlecase}}
+            </div>
+          </div>
+        </mat-card-content>
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Fecha de entrega: </label>
-      <input type="date" class="form-control">
-    </div>
-  </mat-card-content>
+  </div>
   <mat-card-actions>
-    <button mat-raised-button color="warn">Cancelar</button>
-    <button mat-raised-button color="primary">Guardar</button>
+    <button (click)="onNoClick()" type="button" mat-raised-button color="warn">Cancelar</button>
+    <button (click)="denegar()" type="button" mat-raised-button color="accent">Denegar</button>
+    <button (click)="autorizar()" type="button" mat-raised-button color="primary">Autorizar</button>
   </mat-card-actions>
 </mat-card>

@@ -1,17 +1,59 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductoService } from '../../services/producto.service';
+import { Producto } from 'src/models/Producto';
+import { CarritoService } from '../../services/carrito.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css']
 })
-export class ProductosComponent implements OnInit {
+export class ProductosComponent {
 
-  productos: any = [1,2,3,4,5,6,7,8,9,10]
+  productos: Producto[] = []
 
-  constructor() { }
+  constructor(
+    private productoService: ProductoService,
+    private carritoService: CarritoService,
+    private snackBar: MatSnackBar,
+  ) {
+    this.listarProductos();
+  }
 
-  ngOnInit(): void {
+  listarProductos() {
+    this.productoService.getProductos().subscribe((resp: Producto[]) => {
+      this.productos = resp;
+    });
+  }
+
+  agregarAlCarrito(producto: Producto) {
+    //Validaciones
+    if (producto.unidadesCompra) {
+      if (producto.unidadesCompra > producto.stock) {
+        this.openSnackBar("No hay unidades suficientes", "X")
+        return
+      }
+    } else {
+      this.openSnackBar("Debes comprar almenos una unidad", "X")
+      return
+    }
+
+    //Verificar si el producto ya existe en el carrito
+    const existe: boolean = this.carritoService.verificarSiExiste(producto)
+    if (existe) {
+      this.openSnackBar("Este producto ya esta en el carrito", "X")
+      return
+    }
+
+    console.log("Agregado al carrito");
+
+    this.carritoService.agregarProducto(producto);
+    this.openSnackBar("Producto agregado al carrito", "X")
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
   }
 
 }

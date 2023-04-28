@@ -1,1 +1,45 @@
-<p>mis-productos works!</p>
+<div class="container">
+  <mat-card class="item">
+    <button (click)="openDialog()" mat-stroked-button color="accent" style="height: 100%; width: 100%;">
+      <mat-icon>add_circle</mat-icon>
+      Agregar producto
+    </button>
+  </mat-card>
+
+  <div *ngFor="let producto of productos" class="item">
+    <mat-card>
+
+      <mat-card-header>
+        <mat-card-title>{{producto.nombre}}</mat-card-title>
+        <mat-card-subtitle>{{producto.categoria?.toString()| titlecase}}</mat-card-subtitle>
+      </mat-card-header>
+
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+      <mat-card-content>
+        <div>
+          {{producto.descripcion}}
+        </div>
+        <div>
+          <strong> Precio: </strong> {{producto.precio}}
+        </div>
+        <div>
+          <strong> Estado: </strong> {{producto.solicitud.estado.toString()| titlecase}}
+        </div>
+        <div *ngIf="producto.solicitud.estado.toString() == 'pendiente' ">
+          <strong> Fecha de solicitud: </strong> {{producto.solicitud.fecha_solicitud}}
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button type="button" mat-raised-button color="primary">Editar</button>
+        <button type="button" *ngIf="producto.solicitud.estado.toString() == 'pendiente' " mat-raised-button
+          color="warn">
+          Cancelar
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+</div>

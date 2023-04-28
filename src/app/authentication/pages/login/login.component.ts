@@ -38,7 +38,7 @@ export class LoginComponent {
 
     const usuario: string = this.miFormulario.get('usuario')?.value;
     const contrasena: string = this.miFormulario.get('contrasena')?.value;
-    const user: Usuario = new Usuario("", usuario, contrasena, "");
+    const user: Usuario = new Usuario("", usuario, contrasena, "", []);
 
     this.authenticationService.autenticar(user).subscribe((resp: Usuario) => {
       if (resp.rol == "ninguno") {
