@@ -40,17 +40,8 @@ export class EdigarDialogUsuarioComponent implements OnInit {
 
   )
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action);
-  }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 
-  campoEsValido(control: string) {
-    return this.miFormulario.controls[control].errors && this.miFormulario.controls[control].touched;
-  }
 
   getErrorNombre(): string {
     const errors = this.miFormulario.get('usuario')?.errors;
@@ -102,6 +93,18 @@ export class EdigarDialogUsuarioComponent implements OnInit {
         this.onNoClick()
       }
     });
+  }
+
+  campoEsValido(control: string) {
+    return this.miFormulario.controls[control].errors && this.miFormulario.controls[control].touched;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

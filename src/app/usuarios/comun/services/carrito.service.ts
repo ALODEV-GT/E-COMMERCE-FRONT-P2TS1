@@ -25,7 +25,7 @@ export class CarritoService {
     private http: HttpClient,
     private authenticationService: AuthenticationService
   ) {
-    this.usuarioAutenticado = this.authenticationService.getUsuarioAutenticado();
+
   }
 
   agregarProducto(producto: Producto) {
@@ -55,10 +55,12 @@ export class CarritoService {
   }
 
   existeTarjeta(tarjeta: Tarjeta): Observable<boolean> {
+    this.usuarioAutenticado = this.authenticationService.getUsuarioAutenticado();
     return this.http.post<boolean>(`${this.baseUrl}existe-tarjeta?usuario=${this.usuarioAutenticado?.usuario}`, tarjeta);
   }
 
   guardarTarjeta(tarjeta: Tarjeta): Observable<boolean> {
+    this.usuarioAutenticado = this.authenticationService.getUsuarioAutenticado();
     return this.http.post<ResUpdate>(`${this.baseUrl}agregar-tarjeta?usuario=${this.usuarioAutenticado?.usuario}`, tarjeta)
       .pipe(map((resp: ResUpdate) => {
         if (resp.modifiedCount > 0) {
@@ -70,13 +72,22 @@ export class CarritoService {
   }
 
   realizarCompra(): Observable<boolean> {
+    this.usuarioAutenticado = this.authenticationService.getUsuarioAutenticado();
     let total = this.total();
+    this.ponerFechaCompraProductos(new Date(Date.now()).toString());
     const ganancia: Ganancia = new Ganancia(total * 0.95, total - total * 0.95);
     const orden: Orden = new Orden(this.usuarioAutenticado!.usuario, new Date(Date.now()).toString(), new Date(Date.now()).toString(), "pendiente", this.productos, ganancia);
     return this.http.post<boolean>(`${this.baseUrl}comprar`, orden)
   }
 
+  ponerFechaCompraProductos(fechaCompra: String) {
+    this.productos.forEach(prod => {
+      prod.fechaCompra = fechaCompra;
+    });
+  }
+
   getTarjetasUsuario(): Observable<Tarjeta[]> {
+    this.usuarioAutenticado = this.authenticationService.getUsuarioAutenticado();
     return this.http.get<Tarjeta[]>(`${this.baseUrl}tarjetas/${this.usuarioAutenticado?.usuario}`)
   }
 

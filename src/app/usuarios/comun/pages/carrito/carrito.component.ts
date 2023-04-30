@@ -88,6 +88,8 @@ export class CarritoComponent {
         if (resp) {
           this.openSnackBar("Se mando la orden", "X");
           this.miFormulario.reset()
+          this.carritoService.eliminarCarrito()
+          this.listarProductos()
         } else {
           this.openSnackBar("Ocurrio un error al enviar la orden", "X");
         }
@@ -122,7 +124,9 @@ export class CarritoComponent {
       this.carritoService.realizarCompra().subscribe((resp: boolean) => {
         if (resp) {
           this.openSnackBar("Se mando la orden", "X");
+          this.carritoService.eliminarCarrito()
           this.miFormulario.reset()
+          this.listarProductos()
         } else {
           this.openSnackBar("Ocurrio un error al enviar la orden", "X");
         }

@@ -11,7 +11,8 @@ export class Producto {
     public categoria: String,
     public stock: number,
     public solicitud: Solicitud,
-    public unidadesCompra?: number
+    public unidadesCompra?: number,
+    public fechaCompra?: String
   ) { }
 
 }

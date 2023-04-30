@@ -6,6 +6,8 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ProductoCardComponent } from './pages/producto-card/producto-card.component';
 import { MisProductosComponent } from './pages/mis-productos/mis-productos.component';
+import { VentasComponent } from './pages/ventas/ventas.component';
+import { RechazadosComponent } from './pages/rechazados/rechazados.component';
 
 const rutas: Routes = [
   {
@@ -19,6 +21,14 @@ const rutas: Routes = [
       {
         path: 'mis-productos',
         component: MisProductosComponent
+      },
+      {
+        path: 'mis-ventas',
+        component: VentasComponent
+      },
+      {
+        path: 'rechazados',
+        component: RechazadosComponent
       },
       {
         path: 'carrito',

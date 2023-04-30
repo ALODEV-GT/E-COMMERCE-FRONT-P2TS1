@@ -33,9 +33,9 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button type="button" mat-raised-button color="primary">Editar</button>
-        <button type="button" *ngIf="producto.solicitud.estado.toString() == 'pendiente' " mat-raised-button
-          color="warn">
+        <button (click)="openDialogEdit(producto)" type="button" mat-raised-button color="primary">Editar</button>
+        <button (click)="eliminar(producto)" type="button" *ngIf="producto.solicitud.estado.toString() == 'pendiente' "
+          mat-raised-button color="warn">
           Cancelar
         </button>
       </mat-card-actions>

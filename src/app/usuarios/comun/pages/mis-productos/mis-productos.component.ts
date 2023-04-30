@@ -3,6 +3,8 @@ import { DialogAgregarComponent } from '../dialog-agregar/dialog-agregar.compone
 import { MatDialog } from '@angular/material/dialog';
 import { Producto } from 'src/models/Producto';
 import { ProductoService } from '../../services/producto.service';
+import { DialogEditarComponent } from '../dialog-editar/dialog-editar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-mis-productos',
@@ -15,7 +17,8 @@ export class MisProductosComponent {
 
   constructor(
     private productoService: ProductoService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
   ) {
     this.listarProductos();
   }
@@ -33,6 +36,31 @@ export class MisProductosComponent {
     dialogRef.afterClosed().subscribe(result => {
       this.listarProductos();
     });
+  }
+
+  openDialogEdit(producto: Producto): void {
+    const dialogRef = this.dialog.open(DialogEditarComponent, {
+      data: producto
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.listarProductos();
+    });
+  }
+
+  eliminar(producto: Producto) {
+    this.productoService.eliminarProducto(producto).subscribe((resp: boolean) => {
+      if (resp) {
+        this.openSnackBar("Se ha eliminado el producto", "X")
+        this.listarProductos()
+      } else {
+        this.openSnackBar("Ocurrio un error al eliminar el producto", "X")
+      }
+    })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
   }
 
 }

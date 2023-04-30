@@ -12,6 +12,7 @@ import { DialogAgregarComponent } from './pages/dialog-agregar/dialog-agregar.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RechazadosComponent } from './pages/rechazados/rechazados.component';
 import { VentasComponent } from './pages/ventas/ventas.component';
+import { DialogEditarComponent } from './pages/dialog-editar/dialog-editar.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { VentasComponent } from './pages/ventas/ventas.component';
     DialogAgregarComponent,
     RechazadosComponent,
     VentasComponent,
+    DialogEditarComponent,
   ],
   imports: [
     CommonModule,

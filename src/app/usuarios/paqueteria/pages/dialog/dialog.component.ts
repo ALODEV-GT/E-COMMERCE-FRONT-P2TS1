@@ -39,7 +39,7 @@ export class DialogComponent implements OnInit {
   }
 
   denegar() {
-    this.data.solicitud.estado = "negado";
+    this.data.solicitud.estado = "rechazado";
     this.autorizacionService.autorizarProducto(this.data).subscribe((resp: boolean) => {
       if (resp) {
         this.openSnackBar("Se ha denegado el producto", "X")
