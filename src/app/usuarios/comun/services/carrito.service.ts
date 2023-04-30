@@ -76,7 +76,7 @@ export class CarritoService {
     let total = this.total();
     this.ponerFechaCompraProductos(new Date(Date.now()).toString());
     const ganancia: Ganancia = new Ganancia(total * 0.95, total - total * 0.95);
-    const orden: Orden = new Orden(this.usuarioAutenticado!.usuario, new Date(Date.now()).toString(), new Date(Date.now()).toString(), "pendiente", this.productos, ganancia);
+    const orden: Orden = new Orden("", this.usuarioAutenticado!.usuario, new Date(Date.now()).toString(), new Date(Date.now()).toString(), "pendiente", this.productos, ganancia);
     return this.http.post<boolean>(`${this.baseUrl}comprar`, orden)
   }
 

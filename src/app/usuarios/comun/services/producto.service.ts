@@ -52,7 +52,6 @@ export class ProductoService {
 
   getMisProductos(): Observable<Producto[]> {
     this.usuarioAutenticado = this.authenticationService.getUsuarioAutenticado();
-    this.usuarioAutenticado = this.authenticationService.getUsuarioAutenticado();
     return this.http.get<Producto[]>(`${this.baseUrl}mis-productos/${this.usuarioAutenticado?.usuario}`);
   }
 

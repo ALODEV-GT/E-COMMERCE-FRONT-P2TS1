@@ -1,49 +1,125 @@
 <div class="container my-5">
   <div class="row justify-content-center">
-
-    <div class="d-flex">
-      <div style="margin-right: 10px ">
-        <h1>Pedidos</h1>
+    <div style="margin-bottom: 55px;">
+      <div class="d-flex">
+        <div style="margin-right: 10px ">
+          <h1>Pedidos pendientes</h1>
+        </div>
       </div>
-    </div>
 
-    <div class="accordion" *ngFor="let registro of tablas">
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-            aria-expanded="true" aria-controls="collapseOne">
-            <span> <strong>Nombre: </strong> Pedido 1 </span>
-            <span class="spacer"></span>
-            <span> <strong>Fecha: </strong> 2023-15-2 </span>
-            <span class="spacer"></span>
-            <span> <strong>Fecha de entrega: </strong> 2023-12-2 </span>
-            <span class="spacer"></span>
-            <span> <strong>Estado: </strong> Entregado</span>
-            <span class="spacer"></span>
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <div>
+      <div class="accordion" *ngFor="let pendiente of pedidosPendientes">
+        <div class="accordion-item">
+
+          <div class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              attr.data-bs-target="#{{pendiente._id}}" aria-expanded="true">
+              <span> <strong>Id: </strong> {{pendiente._id}} </span>
+              <span class="spacer"></span>
+              <span> <strong>Fecha: </strong> {{pendiente.fecha_pedido}} </span>
+              <span class="spacer"></span>
+              <span> <strong>Fecha de entrega: </strong> {{pendiente.fecha_entrega}} </span>
+              <span class="spacer"></span>
+            </button>
+          </div>
+
+          <div [id]="pendiente._id" class="accordion-collapse collapse">
+            <div class="accordion-body">
+
               <table class="table tabla">
                 <thead class="table-dark">
                   <tr>
-                    <th>NOMBRE DE USUARIO</th>
-                    <th>FECHA DE SUSCRIPCION</th>
-                    <th>INGRESO</th>
+                    <th>Vendedor</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Unidades</th>
+                    <th>Total</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let registro of tablas">
-                    <td>data</td>
-                    <td>data</td>
-                    <td>data</td>
+                  <tr *ngFor="let producto of pendiente.productos">
+                    <td>{{producto.usuario}}</td>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td>{{producto.unidadesCompra}}</td>
+                    <td>{{(producto.unidadesCompra|| 1 ) * producto.precio}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>TOTAL:</strong></td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td><strong>{{totalOrden(pendiente.productos)}}</strong> </td>
                   </tr>
                 </tbody>
               </table>
+
             </div>
           </div>
+
         </div>
       </div>
     </div>
+
+    <div>
+      <div class="d-flex">
+        <div style="margin-right: 10px ">
+          <h1>Pedidos entregados</h1>
+        </div>
+      </div>
+
+      <div class="accordion" *ngFor="let entregado of pendidosEntregados">
+        <div class="accordion-item">
+
+          <div class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              attr.data-bs-target="#{{entregado._id}}" aria-expanded="true">
+              <span> <strong>Id: </strong> {{entregado._id}} </span>
+              <span class="spacer"></span>
+              <span> <strong>Fecha: </strong> {{entregado.fecha_pedido}} </span>
+              <span class="spacer"></span>
+              <span> <strong>Fecha de entrega: </strong> {{entregado.fecha_entrega}} </span>
+              <span class="spacer"></span>
+            </button>
+          </div>
+
+          <div [id]="entregado._id" class="accordion-collapse collapse">
+            <div class="accordion-body">
+
+              <table class="table tabla">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Vendedor</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Unidades</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let producto of entregado.productos">
+                    <td>{{producto.usuario}}</td>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td>{{producto.unidadesCompra}}</td>
+                    <td>{{(producto.unidadesCompra|| 1 ) * producto.precio}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>TOTAL:</strong></td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td><strong>{{totalOrden(entregado.productos)}}</strong> </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
   </div>
+</div>

@@ -3,6 +3,7 @@ import { Producto } from "./Producto";
 
 export class Orden {
   constructor(
+    public _id: String,
     public comprador_usuario: string,
     public fecha_pedido: string,
     public fecha_entrega: string,
