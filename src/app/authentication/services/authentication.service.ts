@@ -34,5 +34,11 @@ export class AuthenticationService {
     );
   }
 
+  cambiarAutenticado(usuario: Usuario) {
+    this._usuario = usuario
+    localStorage.clear();
+    localStorage.setItem('autenticado', JSON.stringify(this._usuario));
+  }
+
 
 }

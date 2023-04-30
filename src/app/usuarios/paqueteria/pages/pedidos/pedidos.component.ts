@@ -5,6 +5,7 @@ import { OrdenService } from '../../services/orden.service';
 import { Orden } from 'src/models/Orden';
 import { Producto } from 'src/models/Producto';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FechaGlobalService } from 'src/app/services/fecha-global.service';
 
 export interface DialogData {
   animal: string;
@@ -29,6 +30,7 @@ export class PedidosComponent {
     public dialog: MatDialog,
     private ordenService: OrdenService,
     private snackBar: MatSnackBar,
+    private fechaGlobalService: FechaGlobalService
   ) {
     this.listarPedidos()
   }
@@ -36,7 +38,15 @@ export class PedidosComponent {
   listarPedidos() {
     this.ordenService.getPedidos().subscribe((resp: Orden[]) => {
       this.pedidos = resp;
+      this.formatearFechas(this.pedidos)
     })
+  }
+
+  formatearFechas(ordenes: Orden[]) {
+    ordenes.forEach(orden => {
+      orden.fecha_pedido = this.fechaGlobalService.convertirFechaFormatoDDMMYYY(orden.fecha_pedido)
+      orden.fecha_entrega = this.fechaGlobalService.convertirFechaFormatoDDMMYYY(orden.fecha_entrega)
+    });
   }
 
   totalOrden(productos: Producto[]) {
@@ -58,14 +68,13 @@ export class PedidosComponent {
     });
   }
 
-  openDialog(): void {
+  openDialog(orden: Orden): void {
     const dialogRef = this.dialog.open(FechaDialogComponent, {
-      data: { name: this.name, animal: this.animal },
+      data: orden,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      this.listarPedidos()
     });
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrdenService } from '../../services/orden.service';
 import { Orden } from 'src/models/Orden';
 import { Producto } from 'src/models/Producto';
+import { FechaGlobalService } from '../../../../services/fecha-global.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -15,21 +16,31 @@ export class PedidosComponent implements OnInit {
   pedidosPendientes: Orden[] = []
 
   constructor(
-    private ordenService: OrdenService
+    private ordenService: OrdenService,
+    private fechaGlobalService: FechaGlobalService
   ) {
     this.listarPedidosEntregados()
     this.listarPedidosPendientes()
   }
 
+  formatearFechas(ordenes: Orden[]) {
+    ordenes.forEach(orden => {
+      orden.fecha_pedido = this.fechaGlobalService.convertirFechaFormatoDDMMYYY(orden.fecha_pedido)
+      orden.fecha_entrega = this.fechaGlobalService.convertirFechaFormatoDDMMYYY(orden.fecha_entrega)
+    });
+  }
+
   listarPedidosEntregados() {
     this.ordenService.getPedidosEntregados().subscribe((resp: Orden[]) => {
       this.pendidosEntregados = resp;
+      this.formatearFechas(this.pendidosEntregados)
     })
   }
 
   listarPedidosPendientes() {
     this.ordenService.getPedidosPendientes().subscribe((resp: Orden[]) => {
       this.pedidosPendientes = resp;
+      this.formatearFechas(this.pedidosPendientes)
     })
   }
 

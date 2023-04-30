@@ -46,8 +46,6 @@ export class ProductosComponent {
       return
     }
 
-    console.log("Agregado al carrito");
-
     this.carritoService.agregarProducto(producto);
     this.openSnackBar("Producto agregado al carrito", "X")
   }

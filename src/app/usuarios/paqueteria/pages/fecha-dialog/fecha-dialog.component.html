@@ -1,33 +1,23 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field appearance="fill">
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div>
-<mat-card>
-  <mat-card-header>
-    <h2>
-      <strong>Editar</strong>
-    </h2>
-  </mat-card-header>
-  <mat-card-content>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Fecha del pedido: </label>
-      <input type="date" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Fecha de entrega: </label>
-      <input type="date" class="form-control">
-    </div>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="warn">Cancelar</button>
-    <button mat-raised-button color="primary">Guardar</button>
-  </mat-card-actions>
-</mat-card>
+<form (ngSubmit)='editar()' autocomplete="off" [formGroup]="miFormulario">
+  <mat-card>
+    <mat-card-header>
+      <h2>
+        <strong>Editar</strong>
+      </h2>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Fecha del pedido: </label>
+        <input formControlName="fechaPedido" type="date" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Fecha de entrega: </label>
+        <input formControlName="fechaEntrega" type="date" class="form-control">
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="button" (click)="onNoClick()" mat-raised-button color="warn">Cancelar</button>
+      <button type="submit" mat-raised-button color="primary">Guardar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

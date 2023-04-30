@@ -74,7 +74,7 @@
               <div>
                 <button (click)="entregarPedido(pendiente)" mat-raised-button color="accent"
                   style="margin-right: 15px;">Entregar</button>
-                <button mat-raised-button color="primary">Editar</button>
+                <button (click)="openDialog(pendiente)" mat-raised-button color="primary">Editar</button>
               </div>
             </div>
 
@@ -85,20 +85,3 @@
       </div>
     </div>
   </div>
-
-
-  <!-- Modal -->
-  <ol>
-    <li>
-      <mat-form-field appearance="fill">
-        <mat-label>What's your name?</mat-label>
-        <input matInput [(ngModel)]="name">
-      </mat-form-field>
-    </li>
-    <li>
-      <button mat-raised-button (click)="openDialog()">Pick one</button>
-    </li>
-    <li *ngIf="animal">
-      You chose: <i>{{animal}}</i>
-    </li>
-  </ol>

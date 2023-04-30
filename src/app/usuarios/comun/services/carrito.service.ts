@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { ResUpdate } from 'src/models/ResUpdate';
 import { Orden } from 'src/models/Orden';
 import { Ganancia } from 'src/models/Ganancia';
+import { FechaGlobalService } from '../../../services/fecha-global.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class CarritoService {
 
   constructor(
     private http: HttpClient,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private fechaGlobalService: FechaGlobalService
   ) {
 
   }
@@ -74,9 +76,10 @@ export class CarritoService {
   realizarCompra(): Observable<boolean> {
     this.usuarioAutenticado = this.authenticationService.getUsuarioAutenticado();
     let total = this.total();
-    this.ponerFechaCompraProductos(new Date(Date.now()).toString());
+    let fechaActual: string = this.fechaGlobalService.fechaActual;
+    this.ponerFechaCompraProductos(fechaActual);
     const ganancia: Ganancia = new Ganancia(total * 0.95, total - total * 0.95);
-    const orden: Orden = new Orden("", this.usuarioAutenticado!.usuario, new Date(Date.now()).toString(), new Date(Date.now()).toString(), "pendiente", this.productos, ganancia);
+    const orden: Orden = new Orden("", this.usuarioAutenticado!.usuario, fechaActual, this.sumarDias(fechaActual, 5), "pendiente", this.productos, ganancia);
     return this.http.post<boolean>(`${this.baseUrl}comprar`, orden)
   }
 
@@ -97,5 +100,12 @@ export class CarritoService {
       total += producto.precio;
     })
     return total;
+  }
+
+  sumarDias(fechaActual: string, dias: number): string {
+    const fecha: Date = new Date(fechaActual);
+    fecha.setDate(fecha.getDate() + dias)
+    let nuevaFecha: string = this.fechaGlobalService.convertirFecha(fecha.toString())
+    return nuevaFecha;
   }
 }

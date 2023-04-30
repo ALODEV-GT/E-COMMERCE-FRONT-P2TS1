@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from 'src/models/Usuario';
 import { AuthenticationService } from '../../../../authentication/services/authentication.service';
 import { Tarjeta } from 'src/models/Tarjeta';
+import { Fecha, FechaGlobalService } from '../../../../services/fecha-global.service';
 
 
 @Component({
@@ -20,16 +21,23 @@ export class CarritoComponent {
 
   tarjetas: Tarjeta[] = []
 
+  fechaActual!: string;
+
   constructor(
     private carritoService: CarritoService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private fechaGlobalService: FechaGlobalService
   ) {
     this.listarProductos()
     this.usuarioAutenticado = this.authenticationService.getUsuarioAutenticado()
     this.carritoService.getTarjetasUsuario().subscribe((resp: Tarjeta[]) => {
       this.tarjetas = resp;
+    })
+    this.fechaGlobalService.obtenerFecha().subscribe((resp: Fecha) => {
+      this.miFormulario.controls["fecha"].setValue(this.fechaGlobalService.convertirFecha(resp.fecha));
+      this.fechaActual = resp.fecha;
     })
   }
 

@@ -32,4 +32,16 @@ export class OrdenService {
     ));
   }
 
+  cambiarFechaEntrega(orden: Orden) {
+    return this.http.put<ResUpdate>(`${this.baseUrl}cambiar-fecha-entrega`, orden).pipe(map(
+      (resp: ResUpdate) => {
+        if (resp.modifiedCount > 0) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    ));
+  }
+
 }
