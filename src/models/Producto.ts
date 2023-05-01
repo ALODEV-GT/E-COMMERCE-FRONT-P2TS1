@@ -12,7 +12,8 @@ export class Producto {
     public stock: number,
     public solicitud: Solicitud,
     public unidadesCompra?: number,
-    public fechaCompra?: String
+    public fechaCompra?: string,
+    public imagenContenido?: String
   ) { }
 
 }

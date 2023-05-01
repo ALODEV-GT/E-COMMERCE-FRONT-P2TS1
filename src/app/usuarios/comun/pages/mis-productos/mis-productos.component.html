@@ -14,7 +14,9 @@
         <mat-card-subtitle>{{producto.categoria?.toString()| titlecase}}</mat-card-subtitle>
       </mat-card-header>
 
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <img mat-card-image
+        [src]="producto.imagenContenido || 'https://images.unsplash.com/photo-1551373824-52d97db2f2c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1071&q=80'"
+        alt="img">
 
       <mat-card-content>
         <div>

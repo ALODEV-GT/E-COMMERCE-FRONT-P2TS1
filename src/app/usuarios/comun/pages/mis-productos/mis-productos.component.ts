@@ -5,6 +5,7 @@ import { Producto } from 'src/models/Producto';
 import { ProductoService } from '../../services/producto.service';
 import { DialogEditarComponent } from '../dialog-editar/dialog-editar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FechaGlobalService } from 'src/app/services/fecha-global.service';
 
 @Component({
   selector: 'app-mis-productos',
@@ -19,6 +20,7 @@ export class MisProductosComponent {
     private productoService: ProductoService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
+    private fechaGlobalService: FechaGlobalService
   ) {
     this.listarProductos();
   }
@@ -26,6 +28,18 @@ export class MisProductosComponent {
   listarProductos() {
     this.productoService.getMisProductos().subscribe((resp: Producto[]) => {
       this.productos = resp;
+      this.productos.forEach(element => {
+        this.productoService.getImgProducto(element.imagen).subscribe((res) => {
+          this.productoService.createImageFromBlob(res, element)
+        })
+      });
+      this.formatearFechas(this.productos)
+    });
+  }
+
+  formatearFechas(productos: Producto[]) {
+    productos.forEach(producto => {
+      producto.solicitud.fecha_solicitud = this.fechaGlobalService.convertirFechaFormatoDDMMYYY(producto.solicitud.fecha_solicitud)
     });
   }
 

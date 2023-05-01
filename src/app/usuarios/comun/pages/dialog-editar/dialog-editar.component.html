@@ -1,15 +1,20 @@
 <form class="container" (ngSubmit)='editarProducto()' autocomplete="off" [formGroup]="miFormulario">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Agregar nuevo producto</mat-card-title>
+      <mat-card-title>Editar</mat-card-title>
       <mat-card-subtitle></mat-card-subtitle>
     </mat-card-header>
     <br>
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-5">
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            alt="Photo of a Shiba Inu">
+          <input type="file" accept="image/*" (change)="onFileSelected($event)" class="invisible" #photoInput />
+          <img mat-card-image
+            class="imagen"
+            [src]="previewImg || data.imagenContenido || 'https://images.unsplash.com/photo-1551373824-52d97db2f2c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1071&q=80'"
+            alt="Photo of a Shiba Inu"
+            (click)="photoInput.click()"
+            >
         </div>
         <div class="col-7">
           <mat-card-content>

@@ -24,6 +24,11 @@ export class ProductosComponent {
   listarProductos() {
     this.productoService.getProductos().subscribe((resp: Producto[]) => {
       this.productos = resp;
+      this.productos.forEach(element => {
+        this.productoService.getImgProducto(element.imagen).subscribe((res) => {
+          this.productoService.createImageFromBlob(res, element)
+        })
+      });
     });
   }
 
@@ -46,6 +51,7 @@ export class ProductosComponent {
       return
     }
 
+    //Agregar sin imagen
     this.carritoService.agregarProducto(producto);
     this.openSnackBar("Producto agregado al carrito", "X")
   }

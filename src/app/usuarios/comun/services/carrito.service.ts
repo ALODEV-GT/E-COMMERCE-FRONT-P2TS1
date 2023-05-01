@@ -78,14 +78,21 @@ export class CarritoService {
     let total = this.total();
     let fechaActual: string = this.fechaGlobalService.fechaActual;
     this.ponerFechaCompraProductos(fechaActual);
+    this.quitarImagenProductos();
     const ganancia: Ganancia = new Ganancia(total * 0.95, total - total * 0.95);
     const orden: Orden = new Orden("", this.usuarioAutenticado!.usuario, fechaActual, this.sumarDias(fechaActual, 5), "pendiente", this.productos, ganancia);
     return this.http.post<boolean>(`${this.baseUrl}comprar`, orden)
   }
 
-  ponerFechaCompraProductos(fechaCompra: String) {
+  ponerFechaCompraProductos(fechaCompra: string) {
     this.productos.forEach(prod => {
       prod.fechaCompra = fechaCompra;
+    });
+  }
+
+  quitarImagenProductos() {
+    this.productos.forEach(prod => {
+      prod.imagenContenido = "";
     });
   }
 

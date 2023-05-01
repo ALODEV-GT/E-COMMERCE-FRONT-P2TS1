@@ -29,6 +29,14 @@ export class ProductoService {
     ));
   }
 
+  guardarImagenProducto(formData: FormData): Observable<String> {
+    return this.http.post<String>(`${this.baseUrl}guardar-imagen`, formData);
+  }
+
+  getImgProducto(url: String): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}get-img-producto?url=${url}`, { responseType: 'blob' });
+  }
+
   editarProducto(productoEditado: Producto) {
     return this.http.put<ResUpdate>(`${this.baseUrl}editar`, productoEditado).pipe(map(
       (resp: ResUpdate) => {
@@ -66,6 +74,16 @@ export class ProductoService {
         return (!resp) ? false : true;
       }
     ));
+  }
+
+  createImageFromBlob(image: Blob, producto: Producto) {
+    let reader = new FileReader();
+    reader.addEventListener('load', () => {
+      producto.imagenContenido = reader.result as string;
+    }, false);
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 
 }

@@ -23,6 +23,7 @@ export class FechaDialogComponent implements OnInit {
   ) {
     this.miFormulario.controls["fechaPedido"].setValue(this.fechaGlobalService.convertirFechaFormatoYYYYMMDD(data.fecha_pedido));
     this.miFormulario.controls["fechaEntrega"].setValue(this.fechaGlobalService.convertirFechaFormatoYYYYMMDD(data.fecha_entrega));
+    this.miFormulario.controls["fechaPedido"].disable();
   }
 
   ngOnInit(): void {

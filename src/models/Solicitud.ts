@@ -1,6 +1,6 @@
 export class Solicitud {
   constructor(
-    public fecha_solicitud: Date,
+    public fecha_solicitud: string,
     public estado: String
   ) { }
 }

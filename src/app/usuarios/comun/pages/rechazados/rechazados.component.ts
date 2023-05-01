@@ -22,6 +22,11 @@ export class RechazadosComponent {
   listarProductos() {
     this.productoService.getMisProductosRechazados().subscribe((resp: Producto[]) => {
       this.productos = resp;
+      this.productos.forEach(element => {
+        this.productoService.getImgProducto(element.imagen).subscribe((res) => {
+          this.productoService.createImageFromBlob(res, element)
+        })
+      });
     })
   }
 

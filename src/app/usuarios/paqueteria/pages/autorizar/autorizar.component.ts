@@ -4,6 +4,7 @@ import { FechaDialogComponent } from '../fecha-dialog/fecha-dialog.component';
 import { AutorizacionService } from '../../services/autorizacion.service';
 import { Producto } from 'src/models/Producto';
 import { DialogComponent } from '../dialog/dialog.component';
+import { FechaGlobalService } from 'src/app/services/fecha-global.service';
 
 @Component({
   selector: 'app-autorizar',
@@ -19,7 +20,8 @@ export class AutorizarComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private autorizacionService: AutorizacionService
+    private autorizacionService: AutorizacionService,
+    private fechaGlobalService: FechaGlobalService
   ) {
     this.listarSolicitudes();
   }
@@ -27,7 +29,14 @@ export class AutorizarComponent implements OnInit {
   listarSolicitudes() {
     this.autorizacionService.getProductosAutorizar().subscribe((resp: Producto[]) => {
       this.productos = resp;
+      this.formatearFechas(this.productos)
     })
+  }
+
+  formatearFechas(productos: Producto[]) {
+    productos.forEach(producto => {
+      producto.solicitud.fecha_solicitud = this.fechaGlobalService.convertirFechaFormatoDDMMYYY(producto.solicitud.fecha_solicitud)
+    });
   }
 
   ngOnInit(): void {

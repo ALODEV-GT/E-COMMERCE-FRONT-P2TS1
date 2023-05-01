@@ -7,7 +7,9 @@
         <mat-card-subtitle>{{producto.categoria?.toString()| titlecase}}</mat-card-subtitle>
       </mat-card-header>
 
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <img mat-card-image
+        [src]="producto.imagenContenido || 'https://images.unsplash.com/photo-1551373824-52d97db2f2c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1071&q=80'"
+        alt="Photo of a Shiba Inu">
 
       <mat-card-content>
         <div>
@@ -24,7 +26,8 @@
 
       <mat-card-actions>
         <div class="mb-3">
-          <input type="number" class="form-control" placeholder="Unidades a comprar" [(ngModel)]="producto.unidadesCompra">
+          <input type="number" class="form-control" placeholder="Unidades a comprar"
+            [(ngModel)]="producto.unidadesCompra">
         </div>
         <button (click)="agregarAlCarrito(producto)" type="button" mat-raised-button color="accent">Agregar al
           carrito</button>
