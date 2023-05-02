@@ -1,3 +1,4 @@
+import { Ganancia } from "./Ganancia";
 import { Solicitud } from "./Solicitud";
 
 export class Producto {
@@ -13,7 +14,8 @@ export class Producto {
     public solicitud: Solicitud,
     public unidadesCompra?: number,
     public fechaCompra?: string,
-    public imagenContenido?: String
+    public imagenContenido?: String,
+    public ganancia?: Ganancia
   ) { }
 
 }

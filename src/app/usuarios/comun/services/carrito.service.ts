@@ -79,6 +79,7 @@ export class CarritoService {
     let fechaActual: string = this.fechaGlobalService.fechaActual;
     this.ponerFechaCompraProductos(fechaActual);
     this.quitarImagenProductos();
+    this.calcularGananciaProductos();
     const ganancia: Ganancia = new Ganancia(total * 0.95, total - total * 0.95);
     const orden: Orden = new Orden("", this.usuarioAutenticado!.usuario, fechaActual, this.sumarDias(fechaActual, 5), "pendiente", this.productos, ganancia);
     return this.http.post<boolean>(`${this.baseUrl}comprar`, orden)
@@ -96,6 +97,13 @@ export class CarritoService {
     });
   }
 
+  calcularGananciaProductos() {
+    this.productos.forEach(prod => {
+      let subtotal = prod.precio * prod.unidadesCompra!
+      prod.ganancia = new Ganancia(subtotal * 0.95, subtotal - subtotal * 0.95);
+    });
+  }
+
   getTarjetasUsuario(): Observable<Tarjeta[]> {
     this.usuarioAutenticado = this.authenticationService.getUsuarioAutenticado();
     return this.http.get<Tarjeta[]>(`${this.baseUrl}tarjetas/${this.usuarioAutenticado?.usuario}`)
@@ -104,7 +112,7 @@ export class CarritoService {
   total(): number {
     let total: number = 0;
     this.productos.forEach(producto => {
-      total += producto.precio;
+      total += producto.precio * producto.unidadesCompra!;
     })
     return total;
   }

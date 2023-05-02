@@ -2,65 +2,46 @@
 
   <div class="d-flex">
     <div style="margin-right: 10px ">
-      <h1>NOMBRE REPORTE</h1>
+      <h1> TOP 5 CLIENTES QUE MAS PRODUCTOS HAN VENDIDO </h1>
     </div>
-
-    <div class=" d-flex align-items-center me-auto">
-      <form autocomplete="off">
-        <label>Fecha inicial</label>
-        <input style="width: 140px; " type="date" name="fechaInicial" />
-        <label style="padding-left: 8px">Fecha final</label>
-        <input style="width: 140px;" type="date" name="fechaFinal" />
-        <input type="submit" value="Mostrar" />
-      </form>
-    </div>
+    <span class="spacer"></span>
+    <form (ngSubmit)='mostrar()' autocomplete="off" [formGroup]="miFormulario">
+      <div class="d-flex align-items-center">
+        <div style="margin-right: 5px;">
+          <label class="form-label">Fecha inicial:</label>
+        </div>
+        <div style="margin-right: 15px;">
+          <input formControlName="fechaInicial" type="date" class="form-control" />
+        </div>
+        <div style="margin-right: 5px;">
+          <label class="form-label">Fecha final:</label>
+        </div>
+        <div style="margin-right: 15px;">
+          <input formControlName="fechaFinal" type="date" class="form-control" />
+        </div>
+        <div>
+          <button type="submit" mat-raised-button color="accent">Mostrar</button>
+        </div>
+      </div>
+    </form>
   </div>
-
   <div>
-    <div class="contenedor d-inline-flex tabla">
-      INGRESO TOTAL:
-      100
-    </div>
-    <div class="contenedor d-inline-flex tabla">
-      COSTO TOTAL:
-      100
-    </div>
-    <div class="contenedor d-inline-flex tabla">
-      GANANCIA TOTAL:
-      100
-    </div>
-    <br>
     <br>
     <div>
       <table class="table tabla">
         <thead class="table-dark">
-          <tr class="bordes">
-            <td colspan="2"><strong>Revista: </strong> name </td>
-            <td colspan="3"><strong>Total de ingresos: </strong> name</td>
-          </tr>
-          <tr class="bordes">
-            <td colspan="2"><strong>Editor: </strong> name</td>
-            <td colspan="3"><strong>Total de costos: </strong> name</td>
-          </tr>
-          <tr class="bordes">
-            <td colspan="2"><strong>Numero de suscripciones: </strong> name</td>
-            <td colspan="3"><strong>Total de ganancias: </strong> name</td>
-          </tr>
           <tr>
             <th>NOMBRE DE USUARIO</th>
-            <th>FECHA DE SUSCRIPCION</th>
-            <th>INGRESO</th>
+            <th>UNIDADES VENDIDAS</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let registro of registros">
-            <td>nombreUsuarios</td>
-            <td>fechaSuscripcion</td>
-            <td>ingreso</td>
+          <tr *ngFor="let resultado of resultados">
+            <td>{{resultado._id.vendedor}}</td>
+            <td>{{resultado.unidadesTotales}}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-
 </div>
