@@ -19,12 +19,15 @@ export class PerfilComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) {
     this.miFormulario.controls["tipoCuenta"].disable();
+    this.usuariosService.getPassUsuario(this.authenticationService.getUsuarioAutenticado()?.usuario || "undefined").subscribe((resp: string) => {
+      this.miFormulario.controls["contrasena"].setValue(resp);
+    })
   }
 
   miFormulario: FormGroup = this.fb.group({
     nombre: [this.authenticationService.getUsuarioAutenticado()?.nombre, [Validators.required, Validators.minLength(5)],],
     usuario: [this.authenticationService.getUsuarioAutenticado()?.usuario, [Validators.required, Validators.minLength(4)],],
-    contrasena: [this.authenticationService.getUsuarioAutenticado()?.contrasena, [Validators.required, Validators.minLength(5)]],
+    contrasena: [ , [Validators.required, Validators.minLength(5)]],
     tipoCuenta: [this.authenticationService.getUsuarioAutenticado()?.rol, Validators.required],
   },
   )

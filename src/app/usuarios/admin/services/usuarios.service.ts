@@ -24,6 +24,11 @@ export class UsuariosService {
     return this.http.get<Usuario>(`${this.baseUrl}usuario/${nombreUsuario}`);
   }
 
+   //Esta no es una solucion correcta, se ralizo por motivos de tiempo
+   getPassUsuario(nombreUsuario: string) {
+    return this.http.get<string>(`${this.baseUrl}pass/${nombreUsuario}`);
+  }
+
   agregarNuevoUsuario(nuevoUsuario: Usuario): Observable<boolean> {
     return this.http.post<Usuario>(`${this.baseUrl}agregar`, nuevoUsuario).pipe(map(
       (resp) => {
