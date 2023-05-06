@@ -26,6 +26,9 @@ export class PedidosComponent {
   tablas: any = [1, 2]
   pedidos: Orden[] = []
 
+  //Paginacion
+  public page!: number;
+
   constructor(
     public dialog: MatDialog,
     private ordenService: OrdenService,

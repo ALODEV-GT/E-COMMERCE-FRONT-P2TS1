@@ -23,6 +23,9 @@ export class CarritoComponent {
 
   fechaActual!: string;
 
+  //Paginacion
+  public page!: number;
+
   constructor(
     private carritoService: CarritoService,
     private fb: FormBuilder,

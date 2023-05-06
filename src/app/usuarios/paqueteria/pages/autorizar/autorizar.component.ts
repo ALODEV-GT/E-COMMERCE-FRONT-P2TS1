@@ -13,10 +13,10 @@ import { FechaGlobalService } from 'src/app/services/fecha-global.service';
 })
 export class AutorizarComponent implements OnInit {
 
-  animal!: string;
-  name!: string;
-
   productos: Producto[] = []
+
+  //Paginacion
+  public page!: number;
 
   constructor(
     public dialog: MatDialog,

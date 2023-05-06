@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RechazadosComponent } from './pages/rechazados/rechazados.component';
 import { VentasComponent } from './pages/ventas/ventas.component';
 import { DialogEditarComponent } from './pages/dialog-editar/dialog-editar.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DialogEditarComponent } from './pages/dialog-editar/dialog-editar.compo
     MaterialModule,
     ComunRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class ComunModule { }

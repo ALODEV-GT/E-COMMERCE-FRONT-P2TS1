@@ -3,7 +3,7 @@
 
     <div class="d-flex">
       <div style="margin-right: 10px ">
-        <h1>Pedidos</h1>
+        <h1>PEDIDOS</h1>
       </div>
     </div>
 
@@ -11,7 +11,7 @@
 
 
 
-    <div *ngFor="let pendiente of pedidos">
+    <div *ngFor="let pendiente of pedidos | paginate: { itemsPerPage: 10, currentPage: page }">
       <div class="tarjeta">
         <div class="container">
           <div class="row justify-content-center">
@@ -83,5 +83,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="centrar" *ngIf="pedidos.length > 10">
+      <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+        nextLabel="Siguiente"></pagination-controls>
     </div>
   </div>

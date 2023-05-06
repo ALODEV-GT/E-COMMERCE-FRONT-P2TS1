@@ -13,7 +13,7 @@
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody *ngFor="let usuario of usuarios">
+        <tbody *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 10, currentPage: page }">
           <tr>
             <td>{{usuario.nombre}}</td>
             <td>{{usuario.usuario}}</td>
@@ -26,6 +26,10 @@
           </tr>
         </tbody>
       </table>
+      <div class="centrar" *ngIf="usuarios.length > 10">
+        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+          nextLabel="Siguiente"></pagination-controls>
+      </div>
     </div>
 
     <form class="col-4" (ngSubmit)='agregarUsuario()' autocomplete="off" [formGroup]="miFormulario">

@@ -13,6 +13,7 @@ import { TopClientesProductosVendidosComponent } from './reportes/top-clientes-p
 import { TopClientesPedidosComponent } from './reportes/top-clientes-pedidos/top-clientes-pedidos.component';
 import { TopClientesStockComponent } from './reportes/top-clientes-stock/top-clientes-stock.component';
 import { ListadoComponent } from './reportes/listado/listado.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ListadoComponent } from './reportes/listado/listado.component';
     MaterialModule,
     AdminRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class AdminModule { }

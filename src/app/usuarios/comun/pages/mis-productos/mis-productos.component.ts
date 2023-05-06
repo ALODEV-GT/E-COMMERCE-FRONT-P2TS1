@@ -16,6 +16,9 @@ export class MisProductosComponent {
 
   productos: Producto[] = []
 
+  //Paginacion
+  public page!: number;
+
   constructor(
     private productoService: ProductoService,
     public dialog: MatDialog,

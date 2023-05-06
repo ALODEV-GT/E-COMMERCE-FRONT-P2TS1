@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div *ngFor="let producto of productos" class="item">
+  <div *ngFor="let producto of productos | paginate: { itemsPerPage: 12, currentPage: page }" class="item">
     <mat-card>
 
       <mat-card-header>
@@ -34,4 +34,8 @@
 
     </mat-card>
   </div>
+</div>
+<div class="centrar" *ngIf="productos.length>12">
+  <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+    nextLabel="Siguiente"></pagination-controls>
 </div>

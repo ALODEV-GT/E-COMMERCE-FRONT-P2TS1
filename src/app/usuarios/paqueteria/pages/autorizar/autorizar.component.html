@@ -3,11 +3,11 @@
 
     <div class="d-flex">
       <div style="margin-right: 10px ">
-        <h1>Autorizacion</h1>
+        <h1>AUTORIZACION DE PRODUCTOS</h1>
       </div>
     </div>
 
-    <div>
+    <div class="centrar">
       <table class="table tabla">
         <thead class="table-dark">
           <tr>
@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let producto of productos">
+          <tr *ngFor="let producto of productos | paginate: { itemsPerPage: 10, currentPage: page }">
             <td>{{producto.nombre.toString() | titlecase}}</td>
             <td>{{producto.usuario}}</td>
             <td>{{producto.solicitud.fecha_solicitud}}</td>
@@ -28,6 +28,10 @@
           </tr>
         </tbody>
       </table>
+      <div class="centrar" *ngIf="productos.length > 10">
+        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+          nextLabel="Siguiente"></pagination-controls>
+      </div>
     </div>
   </div>
 </div>

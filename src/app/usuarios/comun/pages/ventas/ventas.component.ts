@@ -12,6 +12,9 @@ export class VentasComponent {
 
   productos: Producto[] = []
 
+  //Paginacion
+  public page!: number;
+
   constructor(
     private productoService: ProductoService,
     private fechaGlobalService: FechaGlobalService

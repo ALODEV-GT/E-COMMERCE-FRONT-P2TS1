@@ -8,6 +8,7 @@ import { DialogComponent } from './pages/dialog/dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutorizarComponent } from './pages/autorizar/autorizar.component';
 import { FechaDialogComponent } from './pages/fecha-dialog/fecha-dialog.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -24,7 +25,8 @@ import { FechaDialogComponent } from './pages/fecha-dialog/fecha-dialog.componen
     MaterialModule,
     PaqueteriaRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class PaqueteriaModule { }

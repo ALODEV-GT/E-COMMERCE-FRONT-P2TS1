@@ -12,6 +12,9 @@ export class RechazadosComponent {
 
   productos: Producto[] = []
 
+  //Paginacion
+  public page!: number;
+
   constructor(
     private snackBar: MatSnackBar,
     private productoService: ProductoService,

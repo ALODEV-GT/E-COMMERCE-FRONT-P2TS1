@@ -13,6 +13,9 @@ export class ProductosComponent {
 
   productos: Producto[] = []
 
+  //Paginacion
+  public page!: number;
+
   constructor(
     private productoService: ProductoService,
     private carritoService: CarritoService,

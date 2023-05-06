@@ -17,12 +17,15 @@ export class UsuariosComponent {
   usuarios: Usuario[] = [];
   roles: string[] = ["administrador", "paqueteria"]
 
+  //Paginacion
+  public page!: number;
+
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
     private usuariosService: UsuariosService,
     private nombreUsuarioValidator: NombreUsuarioValidatorService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
     this.listarUsuarios();
   }
