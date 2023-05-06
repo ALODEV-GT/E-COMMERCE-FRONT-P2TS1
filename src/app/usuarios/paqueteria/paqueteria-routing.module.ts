@@ -3,12 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { AutorizarComponent } from './pages/autorizar/autorizar.component';
+import { PerfilComponent } from '../components/perfil/perfil.component';
 
 const rutas: Routes = [
   {
     path: '',
     component: InicioComponent,
     children: [
+      {
+        path: 'perfil',
+        component: PerfilComponent
+      },
       {
         path: 'pedidos',
         component: PedidosComponent

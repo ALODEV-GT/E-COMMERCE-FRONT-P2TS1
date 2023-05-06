@@ -26,7 +26,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DialogAgregarComponent,
     RechazadosComponent,
     VentasComponent,
-    DialogEditarComponent,
+    DialogEditarComponent
   ],
   imports: [
     CommonModule,

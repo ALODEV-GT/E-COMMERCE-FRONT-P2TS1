@@ -8,12 +8,17 @@ import { ProductoCardComponent } from './pages/producto-card/producto-card.compo
 import { MisProductosComponent } from './pages/mis-productos/mis-productos.component';
 import { VentasComponent } from './pages/ventas/ventas.component';
 import { RechazadosComponent } from './pages/rechazados/rechazados.component';
+import { PerfilComponent } from '../components/perfil/perfil.component';
 
 const rutas: Routes = [
   {
     path: '',
     component: InicioComponent,
     children: [
+      {
+        path: 'perfil',
+        component: PerfilComponent
+      },
       {
         path: 'productos',
         component: ProductosComponent

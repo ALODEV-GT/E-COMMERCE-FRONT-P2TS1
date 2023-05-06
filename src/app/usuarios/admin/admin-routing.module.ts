@@ -9,6 +9,7 @@ import { TopClientesStockComponent } from './reportes/top-clientes-stock/top-cli
 import { TopClientesPedidosComponent } from './reportes/top-clientes-pedidos/top-clientes-pedidos.component';
 import { TopClientesGananciasComponent } from './reportes/top-clientes-ganancias/top-clientes-ganancias.component';
 import { TopClientesProductosVendidosComponent } from './reportes/top-clientes-productos-vendidos/top-clientes-productos-vendidos.component';
+import { PerfilComponent } from '../components/perfil/perfil.component';
 
 const rutas: Routes = [
   {
@@ -16,9 +17,14 @@ const rutas: Routes = [
     component: InicioComponent,
     children: [
       {
+        path: 'perfil',
+        component: PerfilComponent
+      },
+      {
         path: 'reportes',
         component: ReportesComponent,
         children: [
+
           {
             path: 'listado',
             component: ListadoComponent
