@@ -1,4 +1,12 @@
 <div class="container">
+  <span style="margin-top: 20px; margin-left: 13px; font-size: 30px;">Productos</span>
+  <span class="spacer"></span>
+  <mat-form-field class="full-width buscador" appearance="legacy">
+
+    <input [formControl]="control" matInput placeholder="Buscar">
+  </mat-form-field>
+</div>
+<div class="container">
   <div *ngFor="let producto of productos | paginate: { itemsPerPage: 12, currentPage: page }" class="item">
     <mat-card>
 

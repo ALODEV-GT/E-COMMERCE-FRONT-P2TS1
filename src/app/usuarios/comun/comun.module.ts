@@ -34,7 +34,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ComunRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ]
 })
 export class ComunModule { }

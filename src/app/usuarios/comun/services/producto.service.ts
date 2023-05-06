@@ -54,8 +54,12 @@ export class ProductoService {
     return this.http.get<Producto[]>(`${this.baseUrl}mis-productos-vendidos/${this.usuarioAutenticado?.usuario}`);
   }
 
-  getProductos() {
-    return this.http.get<Producto[]>(`${this.baseUrl}productos-venta`);
+  getProductos(palabra: string) {
+    if (palabra) {
+      return this.http.get<Producto[]>(`${this.baseUrl}productos-venta?clave=${palabra}`);
+    } else {
+      return this.http.get<Producto[]>(`${this.baseUrl}productos-venta`);
+    }
   }
 
   getMisProductos(): Observable<Producto[]> {
